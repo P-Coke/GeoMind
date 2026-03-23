@@ -1,0 +1,35 @@
+{
+  "name": "geomind",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GeoMind desktop workbench",
+  "main": "desktop/electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:renderer\" \"npm:dev:electron\"",
+    "dev:renderer": "vite",
+    "dev:electron": "wait-on tcp:5173 && electron desktop/electron/main.cjs",
+    "dev:backend": "powershell -ExecutionPolicy Bypass -File .\\backend\\scripts\\dev.ps1",
+    "build": "vite build",
+    "test": "vitest run",
+    "test:ui": "playwright test"
+  },
+  "dependencies": {
+    "ol": "^10.6.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@playwright/test": "^1.55.0",
+    "@vitejs/plugin-react": "^5.0.2",
+    "concurrently": "^9.2.1",
+    "electron": "^37.3.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.5",
+    "vitest": "^3.2.4",
+    "wait-on": "^8.0.3"
+  }
+}

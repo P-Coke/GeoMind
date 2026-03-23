@@ -1,0 +1,11 @@
+fastapi<1.0,>=0.116
+uvicorn<1.0,>=0.35
+pydantic<3.0,>=2.10
+earthengine-api<2.0,>=1.6
+requests<3.0,>=2.32
+python-multipart<1.0,>=0.0.20
+pyshp<3.0,>=2.3
+
+[dev]
+httpx<1.0,>=0.28
+pytest<9.0,>=8.3

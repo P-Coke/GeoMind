@@ -1,0 +1,29 @@
+{
+  "projectId": "project_fixture",
+  "name": "Invalid Cycle",
+  "bindings": {},
+  "schemaVersion": "1.0.0",
+  "steps": [
+    {
+      "id": "roi-input",
+      "name": "ROI Input",
+      "op": "input",
+      "params": {"sourceType": "drawn_roi", "geometry": "{\"type\":\"FeatureCollection\",\"features\":[]}"},
+      "inputs": ["export_file"],
+      "outputs": [{"name": "roi", "dataType": "FeatureCollection"}],
+      "executionHints": {},
+      "validationState": {"valid": true, "diagnostics": []}
+    },
+    {
+      "id": "export-step",
+      "name": "Export Result",
+      "op": "export",
+      "params": {"format": "GeoTIFF"},
+      "inputs": ["roi"],
+      "outputs": [{"name": "export_file", "dataType": "File"}],
+      "executionHints": {},
+      "validationState": {"valid": true, "diagnostics": []}
+    }
+  ]
+}
+

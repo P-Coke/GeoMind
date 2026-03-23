@@ -1,0 +1,23 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "sample-roi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [116.35, 39.85],
+            [116.55, 39.85],
+            [116.55, 40.0],
+            [116.35, 40.0],
+            [116.35, 39.85]
+          ]
+        ]
+      }
+    }
+  ]
+}

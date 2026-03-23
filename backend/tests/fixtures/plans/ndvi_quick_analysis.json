@@ -1,0 +1,13 @@
+{
+  "actions": [
+    "load_local_input",
+    "load_dataset",
+    "filter_collection",
+    "mask_cloud",
+    "temporal_reduce",
+    "compute_index",
+    "reduce_region",
+    "export_result"
+  ]
+}
+

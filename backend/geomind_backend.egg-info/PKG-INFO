@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: geomind_backend
+Version: 0.1.0
+Summary: FastAPI backend for GeoMind
+Requires-Python: >=3.12
+Requires-Dist: fastapi<1.0,>=0.116
+Requires-Dist: uvicorn<1.0,>=0.35
+Requires-Dist: pydantic<3.0,>=2.10
+Requires-Dist: earthengine-api<2.0,>=1.6
+Requires-Dist: requests<3.0,>=2.32
+Requires-Dist: python-multipart<1.0,>=0.0.20
+Requires-Dist: pyshp<3.0,>=2.3
+Provides-Extra: dev
+Requires-Dist: httpx<1.0,>=0.28; extra == "dev"
+Requires-Dist: pytest<9.0,>=8.3; extra == "dev"

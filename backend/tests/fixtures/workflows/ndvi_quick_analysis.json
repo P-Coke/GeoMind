@@ -1,0 +1,85 @@
+{
+  "projectId": "project_fixture",
+  "name": "NDVI Quick Analysis",
+  "bindings": {
+    "datasetId": "COPERNICUS/S2_SR_HARMONIZED",
+    "indexType": "NDVI"
+  },
+  "schemaVersion": "1.0.0",
+  "steps": [
+    {
+      "id": "roi-input",
+      "name": "ROI Input",
+      "op": "input",
+      "params": {
+        "sourceType": "drawn_roi",
+        "geometry": "{\"type\":\"FeatureCollection\",\"features\":[]}"
+      },
+      "inputs": [],
+      "outputs": [{"name": "roi", "dataType": "FeatureCollection"}],
+      "executionHints": {},
+      "validationState": {"valid": true, "diagnostics": []}
+    },
+    {
+      "id": "dataset-input",
+      "name": "Dataset Input",
+      "op": "input",
+      "params": {"sourceType": "gee_collection", "datasetId": "COPERNICUS/S2_SR_HARMONIZED"},
+      "inputs": [],
+      "outputs": [{"name": "imagery", "dataType": "ImageCollection"}],
+      "executionHints": {},
+      "validationState": {"valid": true, "diagnostics": []}
+    },
+    {
+      "id": "filter-step",
+      "name": "Filter Collection",
+      "op": "filter",
+      "params": {"start": "2024-01-01", "end": "2024-12-31", "cloudMask": true},
+      "inputs": ["imagery", "roi"],
+      "outputs": [{"name": "filtered_imagery", "dataType": "ImageCollection"}],
+      "executionHints": {},
+      "validationState": {"valid": true, "diagnostics": []}
+    },
+    {
+      "id": "reduce-step",
+      "name": "Temporal Reduce",
+      "op": "temporal_reduce",
+      "params": {"reducer": "median"},
+      "inputs": ["filtered_imagery"],
+      "outputs": [{"name": "composite_image", "dataType": "Image"}],
+      "executionHints": {},
+      "validationState": {"valid": true, "diagnostics": []}
+    },
+    {
+      "id": "index-step",
+      "name": "Derived Index",
+      "op": "index",
+      "params": {"indexType": "NDVI"},
+      "inputs": ["composite_image"],
+      "outputs": [{"name": "derived_index", "dataType": "Image"}],
+      "executionHints": {},
+      "validationState": {"valid": true, "diagnostics": []}
+    },
+    {
+      "id": "stats-step",
+      "name": "Region Stats",
+      "op": "region_stats",
+      "params": {"reducer": "mean"},
+      "inputs": ["derived_index", "roi"],
+      "outputs": [{"name": "summary_table", "dataType": "Table"}],
+      "executionHints": {},
+      "validationState": {"valid": true, "diagnostics": []}
+    },
+    {
+      "id": "export-step",
+      "name": "Export Result",
+      "op": "export",
+      "params": {"format": "GeoTIFF"},
+      "inputs": ["derived_index", "roi"],
+      "outputs": [{"name": "export_file", "dataType": "File"}],
+      "executionHints": {},
+      "validationState": {"valid": true, "diagnostics": []}
+    }
+  ]
+}
+
